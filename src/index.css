@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+  color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h2, code, pre {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  color: #e83e8c;
+}
+
+a, a:hover, .card h4 {
+  color: #61dafb;
+}
+
+.card h5 {
+  color: #888;
+}
+
+.card {
+  color: #282c34;
+  margin-bottom: 20px;
+}
+
+.card a, .card a:hover {
+  color: #e83e8c;
 }
