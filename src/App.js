@@ -8,6 +8,10 @@ import {
   Image
 } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown';
+import {
+  Timeline,
+  Event
+} from "react-timeline-scribble";
 
 class App extends React.Component {
   render() {
@@ -64,11 +68,13 @@ class GistCv extends React.Component {
                           : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
                           if (section.show_section_name) {
                             return (
-                              <Card bg="light">
-                                <Card.Body>
-                                  <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
-                                </Card.Body>
-                              </Card>
+                              <div id={section.name + '-' + this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').replace(/\s/g, '-')}>
+                                <Card bg="light">
+                                  <Card.Body>
+                                    <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                                  </Card.Body>
+                                </Card>
+                              </div>
                             );
                           } else {
                             return (
@@ -115,6 +121,34 @@ class GistCv extends React.Component {
                 }
               })
             }
+            <Timeline>
+            {
+              this.state.config.sections.map((section) => {
+                if (section.placement === 'body') {
+                  return (
+                    ((section.sort && section.sort.direction[0] === 'd')
+                      ? Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix)).reverse()
+                      : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
+                      if (section.show_section_name) {
+                        return (
+                          <Event interval={this.state.gist.files[key].content.split('\n')[2].replace(/^[\s#]+|[\s#]+$/g, '').replace('january', 'jan').replace('february', 'feb').replace('march', 'mar').replace('april', 'apr').replace('june', 'jun').replace('july', 'jul').replace('august', 'aug').replace('september', 'sep').replace('october', 'oct').replace('november', 'nov').replace('december', 'dec')}>
+                            <a href={'#' + section.name + '-' + this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').replace(/\s/g, '-')}>
+                              {this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '')}
+                            </a><br />
+                            {this.state.gist.files[key].content.split('\n')[1].split(' - ')[0].replace(/^[\s#]+|[\s#]+$/g, '')}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ')) ? <br /> : null}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[0].replace('united kingdom', 'uk').trim() : null}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ') && this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].includes(' / ')) ? <br /> : null}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ') && this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].includes(' / ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[1].trim() : null}
+                          </Event>
+                        );
+                      }
+                    })
+                  );
+                }
+              })
+            }
+            </Timeline>
           </Col>
         </Row>
       </Container>

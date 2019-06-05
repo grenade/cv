@@ -9,7 +9,8 @@
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-timeline-scribble": "^1.0.14"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,7 +20,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage":"https://grenade.github.io/cv",
+  "homepage": "https://grenade.github.io/cv",
   "eslintConfig": {
     "extends": "react-app"
   },
