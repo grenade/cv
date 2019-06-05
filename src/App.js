@@ -60,8 +60,10 @@ class GistCv extends React.Component {
                       : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
                       if (section.show_section_name) {
                         return (
-                          <Card body>
-                            <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                          <Card bg="light">
+                            <Card.Body>
+                              <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                            </Card.Body>
                           </Card>
                         );
                       } else {
