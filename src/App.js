@@ -4,7 +4,8 @@ import {
   Container,
   Row,
   Col,
-  Card
+  Card,
+  Image
 } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown';
 
@@ -19,6 +20,8 @@ class App extends React.Component {
 var GIST_ID = '8e487477663c8e57c7bf31e8371f454a';
 var GIST_API_URL = 'https://api.github.com/gists';
 var GIST_CONFIG_FILENAME = 'cv-config.json';
+var GIST_IMAGE_FILENAME = 'rob.png';
+var GITHUB_USERNAME = 'grenade';
 
 class GistCv extends React.Component {
   constructor(props) {
@@ -51,7 +54,6 @@ class GistCv extends React.Component {
           <Col sm={9}>
             {
               this.state.config.sections.map((section) =>
-
                 <div id={section.name}>
                   {(section.show_section_name) ? <h2>{section.name}</h2> : null}
                   {
@@ -78,6 +80,7 @@ class GistCv extends React.Component {
             }
           </Col>
           <Col sm={3}>
+            <Image src={'https://gist.githubusercontent.com/' + GITHUB_USERNAME + '/' + GIST_ID + '/raw/' + GIST_IMAGE_FILENAME} rounded fluid />
             <ul>
             {
               this.state.config.sections.map((section) =>
