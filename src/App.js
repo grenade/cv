@@ -121,6 +121,7 @@ class GistCv extends React.Component {
                 }
               })
             }
+            <h2 style={{marginBottom: '20px'}}>timeline</h2>
             <Timeline>
             {
               this.state.config.sections.map((section) => {
