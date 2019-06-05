@@ -34,3 +34,7 @@ a, a:hover, .card h4 {
 .col-sm-3 img {
   margin: 20px;
 }
+
+.col-sm-3, .col-sm-3 h1, .col-sm-3 h2, .col-sm-3 ul {
+  font-size: 90%;
+}

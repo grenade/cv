@@ -53,41 +53,68 @@ class GistCv extends React.Component {
         <Row>
           <Col sm={9}>
             {
-              this.state.config.sections.map((section) =>
-                <div id={section.name}>
-                  {(section.show_section_name) ? <h2>{section.name}</h2> : null}
-                  {
-                    ((section.sort && section.sort.direction[0] === 'd')
-                      ? Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix)).reverse()
-                      : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
-                      if (section.show_section_name) {
-                        return (
-                          <Card bg="light">
-                            <Card.Body>
+              this.state.config.sections.map((section) => {
+                if (section.placement === 'body') {
+                  return (
+                    <div id={section.name}>
+                      {(section.show_section_name) ? <h2>{section.name}</h2> : null}
+                      {
+                        ((section.sort && section.sort.direction[0] === 'd')
+                          ? Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix)).reverse()
+                          : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
+                          if (section.show_section_name) {
+                            return (
+                              <Card bg="light">
+                                <Card.Body>
+                                  <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                                </Card.Body>
+                              </Card>
+                            );
+                          } else {
+                            return (
                               <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
-                            </Card.Body>
-                          </Card>
-                        );
-                      } else {
-                        return (
-                          <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
-                        )
+                            )
+                          }
+                        })
                       }
-                    })
-                  }
-                </div>
-              )
+                    </div>
+                  );
+                }
+              })
             }
           </Col>
           <Col sm={3}>
             <Image src={'https://gist.githubusercontent.com/' + GITHUB_USERNAME + '/' + GIST_ID + '/raw/' + GIST_IMAGE_FILENAME} rounded fluid />
-            <ul>
             {
-              this.state.config.sections.map((section) =>
-                <li><a href={'#' + section.name}>{section.name}</a></li>
-              )
+              this.state.config.sections.map((section) => {
+                if (section.placement === 'nav') {
+                  return (
+                    <div id={section.name}>
+                      {(section.show_section_name) ? <h2>{section.name}</h2> : null}
+                      {
+                        ((section.sort && section.sort.direction[0] === 'd')
+                          ? Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix)).reverse()
+                          : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
+                          if (section.show_section_name) {
+                            return (
+                              <Card bg="light">
+                                <Card.Body>
+                                  <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                                </Card.Body>
+                              </Card>
+                            );
+                          } else {
+                            return (
+                              <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                            )
+                          }
+                        })
+                      }
+                    </div>
+                  );
+                }
+              })
             }
-            </ul>
           </Col>
         </Row>
       </Container>
