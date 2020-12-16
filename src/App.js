@@ -71,14 +71,14 @@ class GistCv extends React.Component {
                               <div id={section.name + '-' + this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').replace(/\s/g, '-')}>
                                 <Card bg="light">
                                   <Card.Body>
-                                    <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                                    <ReactMarkdown source={this.state.gist.files[key].content.toLowerCase()} key={key} />
                                   </Card.Body>
                                 </Card>
                               </div>
                             );
                           } else {
                             return (
-                              <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                              <ReactMarkdown source={this.state.gist.files[key].content.toLowerCase()} key={key} />
                             )
                           }
                         })
@@ -86,6 +86,7 @@ class GistCv extends React.Component {
                     </div>
                   );
                 }
+                return null;
               })
             }
           </Col>
@@ -105,13 +106,13 @@ class GistCv extends React.Component {
                             return (
                               <Card bg="light">
                                 <Card.Body>
-                                  <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                                  <ReactMarkdown source={this.state.gist.files[key].content.toLowerCase()} key={key} />
                                 </Card.Body>
                               </Card>
                             );
                           } else {
                             return (
-                              <ReactMarkdown source={this.state.gist.files[key].content} key={key} />
+                              <ReactMarkdown source={this.state.gist.files[key].content.toLowerCase()} key={key} />
                             )
                           }
                         })
@@ -119,6 +120,7 @@ class GistCv extends React.Component {
                     </div>
                   );
                 }
+                return null;
               })
             }
             <h2 style={{marginBottom: '20px'}}>timeline</h2>
@@ -134,19 +136,21 @@ class GistCv extends React.Component {
                         return (
                           <Event interval={this.state.gist.files[key].content.split('\n')[2].replace(/^[\s#]+|[\s#]+$/g, '').replace('january', 'jan').replace('february', 'feb').replace('march', 'mar').replace('april', 'apr').replace('june', 'jun').replace('july', 'jul').replace('august', 'aug').replace('september', 'sep').replace('october', 'oct').replace('november', 'nov').replace('december', 'dec')}>
                             <a href={'#' + section.name + '-' + this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').replace(/\s/g, '-')}>
-                              {this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '')}
+                              {this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').toLowerCase()}
                             </a><br />
-                            {this.state.gist.files[key].content.split('\n')[1].split(' - ')[0].replace(/^[\s#]+|[\s#]+$/g, '')}
+                            {this.state.gist.files[key].content.split('\n')[1].split(' - ')[0].replace(/^[\s#]+|[\s#]+$/g, '').toLowerCase()}
                             {(this.state.gist.files[key].content.split('\n')[1].includes(' - ')) ? <br /> : null}
-                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[0].replace('united kingdom', 'uk').trim() : null}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[0].toLowerCase().replace('united kingdom', 'uk').trim() : null}
                             {(this.state.gist.files[key].content.split('\n')[1].includes(' - ') && this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].includes(' / ')) ? <br /> : null}
-                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ') && this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].includes(' / ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[1].trim() : null}
+                            {(this.state.gist.files[key].content.split('\n')[1].includes(' - ') && this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].includes(' / ')) ? this.state.gist.files[key].content.split('\n')[1].split(' - ')[1].split(' / ')[1].trim().toLowerCase() : null}
                           </Event>
                         );
                       }
+                      return null;
                     })
                   );
                 }
+                return null;
               })
             }
             </Timeline>
