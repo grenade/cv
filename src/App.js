@@ -134,7 +134,7 @@ class GistCv extends React.Component {
                       : Object.keys(this.state.gist.files).filter(key => key.startsWith(section.filename_prefix))).map(key => {
                       if (section.show_section_name) {
                         return (
-                          <Event interval={this.state.gist.files[key].content.split('\n')[2].replace(/^[\s#]+|[\s#]+$/g, '').replace('january', 'jan').replace('february', 'feb').replace('march', 'mar').replace('april', 'apr').replace('june', 'jun').replace('july', 'jul').replace('august', 'aug').replace('september', 'sep').replace('october', 'oct').replace('november', 'nov').replace('december', 'dec')}>
+                          <Event interval={this.state.gist.files[key].content.split('\n')[2].replace(/^[\s#]+|[\s#]+$/g, '').toLowerCase().replace('january', 'jan').replace('february', 'feb').replace('march', 'mar').replace('april', 'apr').replace('june', 'jun').replace('july', 'jul').replace('august', 'aug').replace('september', 'sep').replace('october', 'oct').replace('november', 'nov').replace('december', 'dec')}>
                             <a href={'#' + section.name + '-' + this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').replace(/\s/g, '-')}>
                               {this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').toLowerCase()}
                             </a><br />
