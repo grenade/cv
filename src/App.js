@@ -142,7 +142,9 @@ class GistCv extends React.Component {
                               {
                                 (hasIcon)
                                   ? (
-                                      <Image fluid src={this.state.gist.files[key].content.split('\n')[0].match(/https:[^ ]+\.png/)[0]} />
+                                      <div style={{backgroundColor: '#ffffff', width: '100%'}}>
+                                        <Image fluid style={{maxWidth: '90px'}} src={this.state.gist.files[key].content.split('\n')[0].match(/https:[^ ]+\.png/)[0]} />
+                                      </div>
                                     )
                                   : (
                                       this.state.gist.files[key].content.split('\n')[0].replace(/^[\s#]+|[\s#]+$/g, '').toLowerCase()
